@@ -4,34 +4,50 @@ function SendRequest() {
     let url = `https://v6.exchangerate-api.com/v6/${myAPIkey}/latest/USD`
     //Запрашиваем данные с сервера
     fetch(url)
-    .then((response) => 
-            {console.log('Запрос успешен');
-            return response.json(); //Преобразуем сырые данные и возвращаем их
+    .then((response) => {
+            //Добавляем обработку ошибок
+            if (!response.ok) {
+                if (response.status === 404) {
+                  throw new Error(`Data not found`);
+                } else {
+                  throw new Error('Network error');
+                }
+              }
+            console.log('Успешно получили данные для заполнения валют');
+            return response.json(); //Преобразуем сырые данные и возвращаем 
         })
     .then(data => {   
-        let ArrCodes = new Array;
-        ArrCodes = Object.keys(data.conversion_rates);
-        // console.log(ArrCodes);
+            let ArrCodes = new Array;
+            ArrCodes = Object.keys(data.conversion_rates);
+            // console.log(ArrCodes);
 
-        const SelectList1 = document.getElementById('select1');
-        const SelectList2 = document.getElementById('select2');
+            const SelectList1 = document.getElementById('select1');
+            const SelectList2 = document.getElementById('select2');
 
-        //Наполняем выпадающие списки кодами валют
-        ArrCodes.forEach((item) => {
-            // console.log(item);
-            let option1 = createElem('option');//создаем элементы списка
-            let option2 = createElem('option');
-            option1.value = item;       //присваиваем value и само значение
-            option1.innerHTML = item;
-            option2.value = item;
-            option2.innerHTML = item;
-            // console.log(options.value);
-            SelectList1.append(option1);//находим ему родителя :)
-            SelectList2.append(option2);
+            //Наполняем выпадающие списки кодами валют
+            ArrCodes.forEach((item) => {
+                // console.log(item);
+                let option1 = createElem('option');//создаем элементы списка
+                let option2 = createElem('option');
+                option1.value = item;       //присваиваем value и само значение
+                option1.innerHTML = item;
+                option2.value = item;
+                option2.innerHTML = item;
+                // console.log(options.value);
+                SelectList1.append(option1);//находим ему родителя :)
+                SelectList2.append(option2);
+            })
         })
+    .catch((error) => {
+        if (error.message === 'Data not found') {
+            console.error('Данные не найдены!');
+            alert('Данные не найдены!');
         }
-        )
-    .catch((error) => alert('API недоступно!!!'))
+        else {
+            console.error('Произошла ошибка:', error);
+            alert('Возможно, проблема сети');
+        }
+    })
 }
 
 function createElem(typeElem) {
@@ -60,8 +76,16 @@ let url = `https://v6.exchangerate-api.com/v6/${myAPIkey}/pair/${currency1}/${cu
 //Запрашиваем данные с сервера
 fetch(url)
     .then(resp => {
-            console.log('Успешно получили данные по паре валют');
-            return resp.json();
+        //Добавляем обработку ошибок
+        if (!resp.ok) {
+            if (resp.status === 404) {
+              throw new Error(`Data not found`);
+            } else {
+              throw new Error('Network error');
+            }
+          }
+        console.log('Успешно получили данные по паре валют');
+        return resp.json();
         })
     .then(data => {
         console.log(data.conversion_rate);
@@ -69,11 +93,16 @@ fetch(url)
         const total = document.getElementById('total_amount');
         total.innerHTML = data.conversion_rate * amount.value;
     })
-    .catch((error) => { 
-        console.error(error);
-   
-    });
-
+    .catch((error) => {
+        if (error.message === 'Data not found') {
+            console.error('Данные не найдены!');
+            alert('Данные не найдены!');
+        }
+        else {
+            console.error('Произошла ошибка:', error);
+            alert('Возможно, проблема сети');
+        }
+    })
 }
 
 SendRequest();
