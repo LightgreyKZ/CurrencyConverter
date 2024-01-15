@@ -91,7 +91,7 @@ fetch(url)
         console.log(data.conversion_rate);
         const amount = document.getElementById('amount');
         const total = document.getElementById('total_amount');
-        total.innerHTML = data.conversion_rate * amount.value;
+        total.innerHTML = Intl.NumberFormat('ru-RU').format(data.conversion_rate * amount.value);
     })
     .catch((error) => {
         if (error.message === 'Data not found') {
