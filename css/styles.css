@@ -1,0 +1,80 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+    background-image: url('../img/annie-spratt-im8y4BO2hso-unsplash.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-top: 2rem;
+    margin: 0;
+}
+
+html {
+  font-size: 10px;
+  font-family: "Roboto", sans-serif;
+}
+
+.main_container {
+  display: flex;
+  justify-content: center;
+  /* border: 1px solid white; */
+}
+
+.actual-rates {
+  display: inline-block;
+  color: rgba(55, 255, 202, 0.9);
+  font-size: 2rem;
+  padding-left: 2rem;
+  text-shadow: 1px 0 10px rgb(0, 255, 94);
+}
+
+.container {
+  /* min-width: 300px; */
+  /* min-height: 400px; */
+  padding: 0 30px 0 30px;
+  display: inline-block;
+  flex-direction: column;
+  justify-content: space-between;
+  background-image: url('../img/scratched-aluminum-texture-background.jpg');
+  background-position: center;
+  /* background-repeat: no-repeat; */
+  border-radius: 12px;
+  font-family: "Roboto", sans-serif;
+  font-size: 2.2rem;
+  box-shadow: 25px 25px 75px rgba(0, 0, 0, 0.6), 10px 10px 70px rgba(0, 0, 0, 0.6), 
+        inset -5px -5px 15px rgba(0, 0, 0, 0.25), 
+        inset 5px 5px 15px rgba(0, 0, 0, 0.25);
+  color: crimson;
+  text-shadow: 1px 1px 2px black;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+.main-input {
+  height: 2.5rem;
+  direction: rtl;
+}
+
+.button, select, .main-input  {
+  font-size: 1.5rem;
+  height: 3rem;
+  border: 1px solid rgba(0, 0, 0, 0.363);
+  border-radius: 5px;
+  /* background: rgb(222,222,222); */
+  background: linear-gradient(0deg, rgba(222,222,222,1) 0%, rgba(252,252,252,1) 32%, rgba(243,243,243,1) 100%); 
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.6), -2px -2px 5px rgba(255, 255, 255, 0.4), 
+        inset -5px -5px 10px rgba(255, 255, 255, 0.8), 
+        inset 3px 3px 5px rgba(0, 0, 0, 0.3)
+        ;
+}
+
+.button:active, select:active {
+    background: linear-gradient(0deg, rgba(222,222,222,1) 0%, rgba(252,252,252,1) 43%, rgba(243,243,243,1) 100%);
+    box-shadow: 
+        inset -7px -7px 15px rgba(255, 255, 255, 0.8),
+        inset 2px 2px 3px rgba(0, 0, 0, 0.3);
+}

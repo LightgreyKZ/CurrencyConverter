@@ -4,20 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Конвертер курсов</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-    <h1>Конвертер валют</h1>
-    <h2>Курс тенге на сегодня:</h2>
-    <p id="curUSD">Доллар США: </p>
-    <p id="curEUR">Евро: </p>
-    <input type="number" id="amount" required>
-    <select name="" id="select1"></select>
-    <select name="" id="select2"></select>
-    <button onclick="GetConversion()">Конвертировать</button>
-    <br><br>
-    <div class="total">
-        <p>Результат конвертации:</p>
-        <p id="total_amount">10000</p>
+    <div class="main_container">
+        <div class="container">
+            <h1>Конвертер валют</h1>
+            <input type="number" id="amount" class="main-input" required>
+            <select id="select1"></select>
+            <select id="select2"></select>
+            <button class="button" onclick="GetConversion()">Конвертировать</button>
+            <div>
+                <p>Результат конвертации:</p>
+                <p id="total_amount">10000</p>
+            </div>
+        </div>
+        <div class="actual-rates">
+            <h2>Курс тенге на сегодня:</h2>
+            <p id="curUSD">Доллар США: </p>
+            <p id="curEUR">Евро: </p>
+        </div>
+        
     </div>
     <script src="main.js"></script>
 </body>
