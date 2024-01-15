@@ -105,4 +105,38 @@ fetch(url)
     })
 }
 
+function LoadCurrRatesTNG(url, fsCODE) {
+    //Запрос актуальных курсов тенге к доллару и евро
+    //https://v6.exchangerate-api.com/v6/8ec0aea8c4c4379b36b13671/pair/USD/KZT
+    fetch(url)
+    .then((response) => {
+            //Добавляем обработку ошибок
+            if (!response.ok) {
+                if (response.status === 404) {
+                  throw new Error(`Data not found`);
+                } else {
+                  throw new Error('Network error');
+                }
+              }
+            console.log('Успешно получили данные для курса тенге к доллару');
+            return response.json(); //Преобразуем сырые данные и возвращаем 
+        })
+    .then(data => {
+            const curr = document.getElementById(fsCODE);
+            curr.innerHTML += data.conversion_rate;
+        })
+    .catch((error) => {
+        if (error.message === 'Data not found') {
+            console.error('Данные не найдены!');
+            alert('Данные не найдены!');
+        }
+        else {
+            console.error('Произошла ошибка:', error);
+            alert('Возможно, проблема сети');
+        }
+    })
+}
+
 SendRequest();
+LoadCurrRatesTNG('https://v6.exchangerate-api.com/v6/8ec0aea8c4c4379b36b13671/pair/USD/KZT','curUSD');
+LoadCurrRatesTNG('https://v6.exchangerate-api.com/v6/8ec0aea8c4c4379b36b13671/pair/EUR/KZT','curEUR');

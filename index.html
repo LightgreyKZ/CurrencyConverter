@@ -6,13 +6,17 @@
     <title>Конвертер курсов</title>
 </head>
 <body>
+    <h1>Конвертер валют</h1>
+    <h2>Курс тенге на сегодня:</h2>
+    <p id="curUSD">Доллар США: </p>
+    <p id="curEUR">Евро: </p>
     <input type="number" id="amount" required>
     <select name="" id="select1"></select>
     <select name="" id="select2"></select>
-    <button onclick="GetConversion()">Convert</button>
+    <button onclick="GetConversion()">Конвертировать</button>
     <br><br>
     <div class="total">
-        <p>Conversion result:</p>
+        <p>Результат конвертации:</p>
         <p id="total_amount">10000</p>
     </div>
     <script src="main.js"></script>
